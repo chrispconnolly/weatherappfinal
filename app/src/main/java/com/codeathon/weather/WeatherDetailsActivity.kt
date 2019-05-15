@@ -2,8 +2,11 @@ package com.codeathon.weather
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
-import kotlinx.android.synthetic.main.activity_weather_details.*
+import com.codeathon.weather.databinding.ActivityWeatherDetailsBinding
+
+
 
 class WeatherDetailsActivity : AppCompatActivity() {
 
@@ -15,15 +18,9 @@ class WeatherDetailsActivity : AppCompatActivity() {
 
         viewModel = ViewModelProviders.of(this).get(WeatherDetailsViewModel::class.java)
 
-        summary_textview.text = viewModel.summary.value
-        temp_textView.text = viewModel.temp.value
-
-        viewModel.icon.value?.let {
-            icon.setImageResource(it)
-        }
-
-
-        location_textview.text = viewModel.location.value
+        val binding : ActivityWeatherDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_weather_details)
+        binding.viewModel = viewModel
 
     }
 }
+
