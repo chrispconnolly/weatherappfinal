@@ -23,7 +23,7 @@ class Repo {
         val lat = json.lookup<Double>("latitude")[0]
         val long = json.lookup<Double>("longitude")[0]
 
-        return WeatherModel(summary, icon, temp)
+        return WeatherModel(summary, icon, temp, lat, long)
 
     }
 

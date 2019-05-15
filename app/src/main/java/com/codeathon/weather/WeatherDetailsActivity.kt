@@ -23,6 +23,7 @@ class WeatherDetailsActivity : AppCompatActivity() {
         }
 
 
+        location_textview.text = viewModel.location.value
 
     }
 }
