@@ -23,7 +23,19 @@ class Repo {
         val lat = json.lookup<Double>("latitude")[0]
         val long = json.lookup<Double>("longitude")[0]
 
-        return WeatherModel(summary, icon, temp, lat, long)
+        val windspeed: Double =  currently.double("windSpeed")[0] as Double
+        val humidity: Double =  currently.double("humidity")[0] as Double
+        val uvIndex =  currently.int("uvIndex")[0] as Int
+
+        var precipProbability: Double
+
+        try {
+            precipProbability = currently.double("precipProbability")[0] as Double
+        } catch (e: ClassCastException) {
+            precipProbability = (currently.int("precipProbability")[0] as Int).toDouble()
+        }
+
+        return WeatherModel(summary, icon, temp, lat, long, windspeed, humidity, uvIndex, precipProbability)
 
     }
 

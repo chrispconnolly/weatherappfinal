@@ -5,5 +5,9 @@ data class WeatherModel(
     val icon: String,
     val temp: Double,
     val lat: Double,
-    val long: Double
+    val long: Double,
+    val windspeed: Double,
+    val humidity: Double,
+    val uvIndex: Int,
+    val precipProbability: Double
 )

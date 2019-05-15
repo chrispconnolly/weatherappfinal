@@ -13,12 +13,33 @@ class WeatherDetailsViewModel(application: Application) : AndroidViewModel(appli
     val icon = MutableLiveData<Int>()
     val location = MutableLiveData<String>()
 
+    val windspeed = MutableLiveData<String>()
+    val humidity = MutableLiveData<String>()
+    val uvIndex = MutableLiveData<String>()
+    val precipProbability = MutableLiveData<String>()
+
+
     init {
         val currentWeather: WeatherModel = Repo().loadCurrentWeather()
         summary.value = currentWeather.summary
-        temp.value = currentWeather.temp.toString()
+        temp.value = currentWeather.temp.toString() + "º"
         icon.value = getImageSrc(currentWeather.icon)
         location.value = getLocation(currentWeather.lat, currentWeather.long)
+
+        windspeed.value = (currentWeather.windspeed * 100).toString()
+        humidity.value = (currentWeather.humidity *100).toString()
+        uvIndex.value = getUvIndex(currentWeather.uvIndex)
+        precipProbability.value = (currentWeather.precipProbability * 100).toString()
+    }
+
+    private fun getUvIndex(uvIndex: Int): String {
+        return when(uvIndex) {
+            1, 2 -> "Low"
+            3, 4, 5 -> "Moderate"
+            6, 7 -> "High"
+            8, 9, 10 -> "Very High"
+            else -> "Extreme"
+        }
     }
 
     fun getImageSrc(icon: String): Int {

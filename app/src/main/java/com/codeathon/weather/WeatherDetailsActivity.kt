@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
-import com.codeathon.weather.databinding.ActivityWeatherDetailsBinding
+import com.codeathon.weather.databinding.LayoutDetailFinishedBinding
 
 
 
@@ -14,11 +14,11 @@ class WeatherDetailsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_weather_details)
+        setContentView(R.layout.layout_detail_finished)
 
         viewModel = ViewModelProviders.of(this).get(WeatherDetailsViewModel::class.java)
 
-        val binding : ActivityWeatherDetailsBinding = DataBindingUtil.setContentView(this, R.layout.activity_weather_details)
+        val binding : LayoutDetailFinishedBinding = DataBindingUtil.setContentView(this, R.layout.layout_detail_finished)
         binding.viewModel = viewModel
 
     }
